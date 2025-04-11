@@ -24,6 +24,8 @@ interface ElectricityState {
     difficulty: 'easy' | 'medium' | 'hard';
   }>) => void;
   reset: () => void;
+  usesDemoData: boolean;
+  setUsesDemoData: (value: boolean) => void;
 }
 
 export const useElectricityStore = create<ElectricityState>((set) => ({
@@ -31,8 +33,9 @@ export const useElectricityStore = create<ElectricityState>((set) => ({
   electricityRate: 7.5, // Default rate
   summary: null,
   suggestions: [],
+  usesDemoData: false,
   
-  setApplianceUsages: (appliances) => set({ applianceUsages: appliances }),
+  setApplianceUsages: (appliances) => set({ applianceUsages: appliances, usesDemoData: false }),
   
   setElectricityRate: (rate) => set({ electricityRate: rate }),
   
@@ -40,10 +43,13 @@ export const useElectricityStore = create<ElectricityState>((set) => ({
   
   setSuggestions: (suggestions) => set({ suggestions }),
   
+  setUsesDemoData: (value) => set({ usesDemoData: value }),
+  
   reset: () => set({
     applianceUsages: [],
     electricityRate: 7.5,
     summary: null,
-    suggestions: []
+    suggestions: [],
+    usesDemoData: false
   })
 }));
