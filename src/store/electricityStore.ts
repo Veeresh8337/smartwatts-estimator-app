@@ -60,22 +60,65 @@ const demoSuggestions = [
   }
 ];
 
-// Demo summary data
+// Demo summary data - updated to match ConsumptionSummary interface
 const demoSummary: ConsumptionSummary = {
-  totalDailyConsumption: 8.5,
-  totalMonthlyConsumption: 255,
-  totalEnergyCost: 1912.5,
-  fixedCharge: 100,
-  surcharge: 100.63,
-  totalBill: 2113.13,
-  applianceBreakdown: [
-    { name: 'Air Conditioner', consumption: 120, cost: 900 },
-    { name: 'Refrigerator', consumption: 45, cost: 337.5 },
-    { name: 'Television', consumption: 25, cost: 187.5 },
-    { name: 'Lights', consumption: 35, cost: 262.5 },
-    { name: 'Other Appliances', consumption: 30, cost: 225 }
+  dailyUsage: 8.5,
+  monthlyUsage: 255,
+  applianceUsages: [
+    {
+      applianceId: 'demo-ac',
+      name: 'Air Conditioner',
+      category: 'Cooling',
+      dailyUsage: 3.6,
+      monthlyUsage: 108,
+      monthlyCost: 810,
+      percentage: 42.35
+    },
+    {
+      applianceId: 'demo-fridge',
+      name: 'Refrigerator',
+      category: 'Kitchen',
+      dailyUsage: 1.8,
+      monthlyUsage: 54,
+      monthlyCost: 405,
+      percentage: 21.18
+    },
+    {
+      applianceId: 'demo-tv',
+      name: 'Television',
+      category: 'Entertainment',
+      dailyUsage: 1.2,
+      monthlyUsage: 36,
+      monthlyCost: 270,
+      percentage: 14.12
+    },
+    {
+      applianceId: 'demo-lights',
+      name: 'Lights',
+      category: 'Lighting',
+      dailyUsage: 0.9,
+      monthlyUsage: 27,
+      monthlyCost: 202.5,
+      percentage: 10.59
+    },
+    {
+      applianceId: 'demo-washing',
+      name: 'Washing Machine',
+      category: 'Laundry',
+      dailyUsage: 1.0,
+      monthlyUsage: 30,
+      monthlyCost: 225,
+      percentage: 11.76
+    }
   ],
-  carbonFootprint: 178.5
+  billBreakdown: {
+    energyCharge: 1912.5,
+    fixedCharge: 100,
+    surcharge: 95.63,
+    total: 2108.13
+  },
+  totalCost: 2108.13,
+  carbonFootprint: 209.1
 };
 
 export const useElectricityStore = create<ElectricityState>((set) => ({
