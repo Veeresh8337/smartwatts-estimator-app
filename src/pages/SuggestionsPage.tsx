@@ -15,19 +15,23 @@ const SuggestionsPage: React.FC = () => {
     applianceUsages, 
     electricityRate,
     suggestions,
-    setSuggestions
+    setSuggestions,
+    usesDemoData,
+    setUsesDemoData
   } = useElectricityStore();
   
   useEffect(() => {
-    if (!summary || applianceUsages.length === 0) {
-      toast.error('Please add appliances and calculate your bill first', {
+    // If there's no data, use demo data
+    if ((!summary || applianceUsages.length === 0) && !usesDemoData) {
+      setUsesDemoData(true);
+      toast.info('Using demo data to show suggestions', {
         position: 'top-center'
       });
-      navigate('/estimator');
       return;
     }
     
-    if (suggestions.length === 0 && applianceUsages.length > 0) {
+    // Generate suggestions if we have real data but no suggestions yet
+    if (!usesDemoData && applianceUsages.length > 0 && suggestions.length === 0) {
       const newSuggestions = generateSuggestions(applianceUsages, {
         energyRate: electricityRate,
         fixedCharge: 100,
@@ -35,10 +39,10 @@ const SuggestionsPage: React.FC = () => {
       });
       setSuggestions(newSuggestions);
     }
-  }, [summary, navigate, applianceUsages, suggestions, setSuggestions, electricityRate]);
+  }, [summary, applianceUsages, suggestions, setSuggestions, electricityRate, usesDemoData, setUsesDemoData]);
   
-  if (!summary || suggestions.length === 0) {
-    return null; // Will redirect via useEffect
+  if (!summary && !usesDemoData) {
+    return null; // Will use demo data via useEffect
   }
   
   return (
@@ -46,7 +50,9 @@ const SuggestionsPage: React.FC = () => {
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Smart Suggestions</h1>
         <p className="text-gray-500">
-          Personalized recommendations to reduce your electricity bill
+          {usesDemoData 
+            ? 'Demo recommendations to help you understand potential savings' 
+            : 'Personalized recommendations to reduce your electricity bill'}
         </p>
       </div>
       
@@ -75,10 +81,10 @@ const SuggestionsPage: React.FC = () => {
             By implementing all suggestions, you could reduce your carbon emissions by approximately:
           </p>
           <p className="text-3xl font-bold text-energy-green mb-4">
-            {(summary.carbonFootprint * 0.15).toFixed(2)} kg CO₂ per month
+            {(summary?.carbonFootprint * 0.15).toFixed(2)} kg CO₂ per month
           </p>
           <p className="text-sm text-gray-600">
-            This is equivalent to planting about {Math.round((summary.carbonFootprint * 0.15) / 21)} trees per year.
+            This is equivalent to planting about {Math.round((summary?.carbonFootprint * 0.15 || 0) / 21)} trees per year.
           </p>
         </div>
       </div>

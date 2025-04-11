@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Zap, Menu } from 'lucide-react';
@@ -9,6 +9,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 const Navbar: React.FC = () => {
   const isMobile = useIsMobile();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white">
@@ -30,28 +31,28 @@ const Navbar: React.FC = () => {
               <nav className="flex flex-col gap-4 mt-6">
                 <Link 
                   to="/" 
-                  className="text-lg font-medium hover:text-energy-blue transition-colors"
+                  className={`text-lg font-medium transition-colors ${location.pathname === '/' ? 'text-energy-blue' : 'hover:text-energy-blue'}`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Home
                 </Link>
                 <Link 
                   to="/estimator" 
-                  className="text-lg font-medium hover:text-energy-blue transition-colors"
+                  className={`text-lg font-medium transition-colors ${location.pathname === '/estimator' ? 'text-energy-blue' : 'hover:text-energy-blue'}`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Estimator
                 </Link>
                 <Link 
                   to="/summary" 
-                  className="text-lg font-medium hover:text-energy-blue transition-colors"
+                  className={`text-lg font-medium transition-colors ${location.pathname === '/summary' ? 'text-energy-blue' : 'hover:text-energy-blue'}`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Summary
                 </Link>
                 <Link 
                   to="/suggestions" 
-                  className="text-lg font-medium hover:text-energy-blue transition-colors"
+                  className={`text-lg font-medium transition-colors ${location.pathname === '/suggestions' ? 'text-energy-blue' : 'hover:text-energy-blue'}`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Suggestions
@@ -67,16 +68,16 @@ const Navbar: React.FC = () => {
         ) : (
           <>
             <nav className="hidden md:flex items-center gap-6">
-              <Link to="/" className="text-sm font-medium hover:text-energy-blue transition-colors">
+              <Link to="/" className={`text-sm font-medium transition-colors ${location.pathname === '/' ? 'text-energy-blue' : 'hover:text-energy-blue'}`}>
                 Home
               </Link>
-              <Link to="/estimator" className="text-sm font-medium hover:text-energy-blue transition-colors">
+              <Link to="/estimator" className={`text-sm font-medium transition-colors ${location.pathname === '/estimator' ? 'text-energy-blue' : 'hover:text-energy-blue'}`}>
                 Estimator
               </Link>
-              <Link to="/summary" className="text-sm font-medium hover:text-energy-blue transition-colors">
+              <Link to="/summary" className={`text-sm font-medium transition-colors ${location.pathname === '/summary' ? 'text-energy-blue' : 'hover:text-energy-blue'}`}>
                 Summary
               </Link>
-              <Link to="/suggestions" className="text-sm font-medium hover:text-energy-blue transition-colors">
+              <Link to="/suggestions" className={`text-sm font-medium transition-colors ${location.pathname === '/suggestions' ? 'text-energy-blue' : 'hover:text-energy-blue'}`}>
                 Suggestions
               </Link>
             </nav>

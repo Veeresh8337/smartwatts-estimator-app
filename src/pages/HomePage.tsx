@@ -3,20 +3,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Zap, Calculator, PieChart, Lightbulb, Battery, FileText } from 'lucide-react';
+import { Zap, Calculator, PieChart, Lightbulb, Battery, FileText, ArrowRight } from 'lucide-react';
 
 const HomePage: React.FC = () => {
   return (
     <div className="container mx-auto py-8 px-4">
       {/* Hero Section */}
-      <section className="py-16 hero-gradient rounded-3xl mb-16">
+      <section className="py-12 md:py-16 hero-gradient rounded-3xl mb-12 md:mb-16">
         <div className="container px-4 md:px-6 mx-auto">
           <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
             <div className="space-y-4">
               <div className="inline-block rounded-lg bg-energy-blue/10 px-3 py-1 text-sm text-energy-blue mb-4">
                 Smart Electricity Estimator
               </div>
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
                 Understand Your <span className="gradient-text">Electricity Bill</span>
               </h1>
               <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -37,8 +37,8 @@ const HomePage: React.FC = () => {
             </div>
             <div className="mx-auto lg:mt-0 lg:order-last animate-float">
               <img
-                alt="Electricity Dashboard"
-                className="rounded-xl object-cover w-full aspect-[4/3]"
+                alt="Smart home energy management"
+                className="rounded-xl object-cover w-full aspect-[4/3] shadow-lg"
                 src="https://images.unsplash.com/photo-1592833159842-07eec5fbd8e6?q=80&w=1887&auto=format&fit=crop"
                 width={550}
                 height={413}
@@ -61,7 +61,7 @@ const HomePage: React.FC = () => {
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             <Card className="energy-card">
               <CardContent className="pt-6 text-center">
                 <div className="rounded-full bg-energy-blue/10 p-3 w-12 h-12 mx-auto mb-4">
@@ -110,6 +110,40 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* Image Gallery Section */}
+      <section className="py-12 mb-16">
+        <div className="container px-4 md:px-6 mx-auto">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-center mb-8">
+            Smart Energy Management
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="md:col-span-2 overflow-hidden rounded-2xl shadow-lg aspect-video">
+              <img 
+                src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=800&auto=format&fit=crop&q=80" 
+                alt="Smart home energy dashboard" 
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div className="space-y-6">
+              <div className="overflow-hidden rounded-2xl shadow-lg">
+                <img 
+                  src="https://images.unsplash.com/photo-1625961332771-3f40b0e2bdcf?w=800&auto=format&fit=crop&q=80" 
+                  alt="Energy saving light bulb" 
+                  className="w-full h-48 object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="overflow-hidden rounded-2xl shadow-lg">
+                <img 
+                  src="https://images.unsplash.com/photo-1605600659873-d808a13e4d2a?w=800&auto=format&fit=crop&q=80" 
+                  alt="Solar panels" 
+                  className="w-full h-48 object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-12 bg-energy-blue/10 rounded-3xl">
         <div className="container px-4 md:px-6 mx-auto">
@@ -131,7 +165,7 @@ const HomePage: React.FC = () => {
                 </Button>
                 <Button variant="outline" asChild>
                   <Link to="/suggestions">
-                    <FileText className="mr-2 h-4 w-4" /> Learn More
+                    <ArrowRight className="mr-2 h-4 w-4" /> View Suggestions
                   </Link>
                 </Button>
               </div>
@@ -139,7 +173,7 @@ const HomePage: React.FC = () => {
             <div className="flex items-center justify-center">
               <img
                 alt="Smart energy management"
-                className="rounded-xl object-cover mx-auto aspect-[4/3]"
+                className="rounded-xl object-cover mx-auto aspect-[4/3] shadow-lg"
                 src="https://images.unsplash.com/photo-1611151657506-8a5f0f4e9d23?q=80&w=2072&auto=format&fit=crop"
                 width={500}
                 height={375}
